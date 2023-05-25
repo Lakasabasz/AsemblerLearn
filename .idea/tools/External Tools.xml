@@ -1,0 +1,9 @@
+<toolSet name="External Tools">
+  <tool name="as" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="C:\Program Files (x86)\JetBrains\CLion 2023.1.2\bin\mingw\bin\as.exe" />
+      <option name="PARAMETERS" value="$FileName$ -o out.o" />
+      <option name="WORKING_DIRECTORY" />
+    </exec>
+  </tool>
+</toolSet>
