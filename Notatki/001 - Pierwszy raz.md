@@ -59,3 +59,34 @@ Disassembly of section .text:
   2e:	90                   	nop
   2f:	90                   	nop
 ```
+
+## Wnioski
+```asm
+push   %rbp                 ; Zapisanie obecnego stanu rejestru na stosie
+mov    %rsp,%rbp            ; Skopiowanie rejestru rsp do rbp
+sub    $0x30,%rsp           ; Odjęcie od  0x30 zawartości rejestru rsp
+call   d <main+0xd>         ; Wywołanie funkcji main()
+movl   $0x5,-0x4(%rbp)      ; Zapisanie do fragmentu rejestru rbp wartości 0x5
+movl   $0x8,-0x8(%rbp)      ; Zapisanie do fragmentu rejestru rbp wartości 0x8
+mov    -0x4(%rbp),%edx      ; Przeniesienie wcześniej zapisanego 0x5 do rejestru edx
+mov    -0x8(%rbp),%eax      ; Przeniesienie wcześniej zapisanego 0x8 do rejestru eax
+add    %edx,%eax            ; Operacja dodawania rejestrów edx do eax
+add    $0x30,%rsp           ; Dodanie 0x30 do rejestru rsp
+pop    %rbp                 ; Cofnięcie z rejestru wartości rejestru rbp
+ret                         ; Zakończenie programu
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+```
+
+### Symbole
+`%` - odwołanie do rejestru \
+`$` - literał \
+`0x4(%rbp)` - odwołanie do adresu `0x4` rejestru rbp. Jeśli będzie jakaś liczba bez podania symbolu to oznacza sztywny adres w pamięci.
+
+### Instrukcje
+- `movl` - Przeniesienie wartości typu long
